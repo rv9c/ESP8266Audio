@@ -165,6 +165,7 @@ retry:
   if (((int)(icyByteCount + len) > (int)icyMetaInt) && (icyMetaInt > 0)) {
     int beforeIcy = icyMetaInt - icyByteCount;
     int ret = stream->read(reinterpret_cast<uint8_t*>(data), beforeIcy);
+    if (ret < 0) ret = 0;
     read += ret;
     pos += ret;
     len -= ret;
